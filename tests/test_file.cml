@@ -1,0 +1,20 @@
+(* deps: CMD Etc @tests/Nat rec_tests.Rec *)
+
+fun fact i =
+  if i < 1 
+  then 1
+  else i * fact (i - 1)
+
+val _ =
+  let 
+    val _ = print (cmd_fn ())
+    val _ = print "\n"
+    val _ = print (etc_fn ())
+    val _ = print "\n"
+    val _ = print (nat_fn ())
+    val _ = print "\n"
+    val _ = print (rec_fn ())
+    val _ = print "\n"
+  in
+    ()
+  end

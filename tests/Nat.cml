@@ -1,0 +1,4 @@
+(* deps: CMD *)
+
+fun nat_fn i =
+  "nat_fn"

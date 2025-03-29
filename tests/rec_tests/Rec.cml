@@ -1,0 +1,2 @@
+fun rec_fn i =
+  "rec_fn"

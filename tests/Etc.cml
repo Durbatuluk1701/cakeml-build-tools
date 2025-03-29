@@ -1,0 +1,4 @@
+(* deps: BasisStuff *)
+
+fun etc_fn i =
+  "etc_fn" ^ basis_stuff ()
