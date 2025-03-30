@@ -2,6 +2,10 @@ import argparse
 import os
 import subprocess
 
+def debug_print(msg: str):
+    """Print debug messages."""
+    if os.getenv("DEBUG"):
+        print(msg)
 
 def validate_file(file_path: str) -> str:
     """Check if the provided file exists and is readable."""
@@ -44,10 +48,15 @@ def get_direct_deps(file_path: str) -> list[str]:
 
 def get_trans_deps(file_path: str, seen: list[str]) -> list[str]:
     deps = get_direct_deps(file_path)
+    debug_print(f"Direct deps for {file_path}: {deps}")
     full_deps = []
     for dep in deps:
-        if dep not in seen:
+        debug_print(f"\tChecking {dep} against seen: {seen}")
+        debug_print(f"\tChecking {dep} against full_deps: {full_deps}")
+        if dep not in seen and dep not in full_deps:
+            debug_print(f"\tDep: {dep} was not yet seen")
             new_deps = get_trans_deps(dep, seen + [dep] + full_deps)
+            debug_print(f"\tNew deps for {dep}: {new_deps}")
             full_deps.extend(new_deps)
     return full_deps + [file_path]
 
